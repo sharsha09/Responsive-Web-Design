@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Homework 8</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js" ></script>
+        <code><!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script></code>
+        <link href="hw8.css" rel="stylesheet"/>
+        <script src="hw8.js"></script>
+        
+    </head>
+    <body onload="getLocation()">
+        <div id="first">
+            <form id="searchForm">
+                <div class="row">
+                    <div class="col-md-2 ">
+                        FB Search
+                    </div>
+                    <div class="col-md-offset-2 col-md-4 col-xs-offset-1 col-xs-5 col-sm-offset-1 col-sm-5">
+                        <input name ="name" type="text" id="field" class="form-control input-sm "
+                               placeholder="type something..." required/>
+                        
+                    </div>
+                    <div class="col-md-4 col-xs-4 col-sm-4">
+                        <button id="search" type="button" class="btn btn-default"><span class="glyphicon glyphicon-search" ></span></button>
+                        <button type="button" class="btn btn-default " id="clearButton" >Clear</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class = "container">
+            <ul class="nav nav-pills nav-justified">
+                <li id="defaultactive" class="active" data-toggle="tab"><a href="#users" class="tabsclick">Users</a></li>
+                <li><a href="#page" data-toggle="tab" class="tabsclick">Pages</a></li>
+                <li><a href="#events" data-toggle="tab" class="tabsclick">Events</a></li>
+                <li><a href="#places" data-toggle="tab" class="tabsclick">Places</a></li>
+                <li><a href="#groups" data-toggle="tab" class="tabsclick">Groups</a></li>
+                <li><a href="#favorites" data-toggle="tab" class="tabsclick">Favorites</a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="users" class="tab-pane fade in active">
+                </div>
+                <div id="page" class="tab-pane fade">
+                </div>
+                <div id="events" class="tab-pane fade">
+                </div>
+                <div id="places" class="tab-pane fade">
+                </div>
+                <div id="groups" class="tab-pane fade">
+                </div>
+                <div id="favorites" class="tab-pane fade">
+                </div>
+            </div>
+        </div>
+        <hr class="line">
+        <div id = "firstpage">
+
+        <div class = "container">
+            <div id="test">
+                <table id="firstpagetable" class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th><th>Profile Photo</th><th>Name</th><th>Favorites</th><th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody id="firstpagetbody">
+                    </tbody>
+                </table>
+            </div>
+        </div> 
+        <div class="row">
+                <div id="left" class= "col-md-6 col-xs-6 col-sm-6 text-right">
+                    <button type="button" class="btn btn-default">Previous</button>
+                </div>
+                <div id="right" class= "col-md-6 col-xs-6 col-sm-6">
+                    <button type="button" class="btn btn-default">Next</button>
+                </div>
+                
+        </div>
+        </div>
+        <div id = "secondpage">
+            <div class="row">
+                <div class="col-md-2 col-xs-2 col-sm-2">
+                    <button id="back" type="button" class="btn btn-default btn-sm">
+                      <span class="glyphicon glyphicon-chevron-left"></span> Back
+                    </button>
+                </div>
+                <div class="col-md-offset-8 col-md-1 col-xs-offset-6 col-xs-1 col-sm-offset-6 col-sm-1">
+                    <button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-star-empty"></span></button>	
+                </div>
+                <div class="col-md-1 col-xs-1 col-sm-1">
+                    <button id="fbimg" type="button" class="btn btn-default"><img src="http://cs-server.usc.edu:45678/hw/hw8/images/facebook.png" width="20" height="20"/></button>
+                </div>
+            </div>
+            <div classs = "container-fluid">
+                <div class = "row">
+                    <div id = "albumstable" class="col-md-6 col-sm-6 col-xs-6 ">
+                       <!-- <div class="container">-->
+                         <div class="panel panel-default">
+  	                     <div class="panel-content">
+                             <div class="well  well-sm">Albums</div>
+                             <div id = "writeamsg"></div>
+                            <div id="hidealbums">
+                          <div class="panel-group" id="accordion">
+                              <!-- addition-->
+                              
+                            
+                            <div class="panel panel-default">
+                              <div class="panel-heading">
+                                <h4 class="panel-title">
+                                  <a id="photoname0" data-toggle="collapse" data-parent="#accordion" href="#collapse1"></a>
+                                </h4>
+                              </div>
+                              <div id="collapse1" class="panel-collapse collapse in">
+                                <div class="img-responsive" id="image01" class="panel-body"></div>
+                                <div class="img-responsive" id="image02" class="panel-body"></div>
+                              </div>
+                            </div>
+                            <div class="panel panel-default">
+                              <div class="panel-heading">
+                                <h4 class="panel-title">
+                                  <a id="photoname1" data-toggle="collapse" data-parent="#accordion" href="#collapse2"></a>
+                                </h4>
+                              </div>
+                              <div id="collapse2" class="panel-collapse collapse">
+                                <div class="img-responsive" id="image11" class="panel-body"></div>
+                                <div class="img-responsive" id="image12" class="panel-body"></div>
+                              </div>
+                            </div>
+                            <div class="panel panel-default">
+                              <div class="panel-heading">
+                                <h4 class="panel-title">
+                                  <a id="photoname2" data-toggle="collapse" data-parent="#accordion" href="#collapse3"></a>
+                                </h4>
+                              </div>
+                              <div id="collapse3" class="panel-collapse collapse">
+                                <div class="img-responsive" id="image21" class="panel-body"></div>
+                                <div class="img-responsive" id="image22" class="panel-body"></div>
+                              </div>
+                            </div>
+                            <div class="panel panel-default">
+                              <div class="panel-heading">
+                                <h4 class="panel-title">
+                                  <a id="photoname3" data-toggle="collapse" data-parent="#accordion" href="#collapse4"></a>
+                                </h4>
+                              </div>
+                              <div id="collapse4" class="panel-collapse collapse">
+                                <div class="img-responsive" id="image31" class="panel-body"></div>
+                                <div class="img-responsive" id="image32" class="panel-body"></div>
+                              </div>
+                            </div>
+                            <div class="panel panel-default">
+                              <div class="panel-heading">
+                                <h4 class="panel-title">
+                                  <a id="photoname4" data-toggle="collapse" data-parent="#accordion" href="#collapse5"></a>
+                                </h4>
+                              </div>
+                              <div id="collapse5" class="panel-collapse collapse">
+                                <div class="img-responsive" id="image41" class="panel-body"></div>
+                                <div class="img-responsive" id="image42" class="panel-body"></div>
+                              </div>
+                            </div>
+                            
+                                
+                         </div><!-- end of panel group accordian-->
+                        </div>
+                         </div></div>
+                       <!-- </div>--> <!-- end of container-->
+                    </div>
+                    <div id = "poststable" class="col-md-6 col-xs-6 col-sm-6">
+                    <div class="panel panel-default">
+                    <div class="panel-content"><div class="well  well-sm">Posts</div><div class="panel-group">
+                        <div id = "writepmsg"></div>
+                        <div id="hideposts">
+                            <div class="panel panel-default">
+                              <div id="posts0" class="panel-body"></div>
+                            </div>
+                            <div class="panel panel-default">
+                              <div id="posts1" class="panel-body"></div>
+                            </div>
+                            <div class="panel panel-default">
+                              <div id="posts2" class="panel-body"></div>
+                            </div>
+                            <div class="panel panel-default">
+                              <div id="posts3" class="panel-body"></div>
+                            </div>
+                            <div class="panel panel-default">
+                              <div id="posts4" class="panel-body"></div>
+                            </div>
+                        </div>
+                  </div>
+                    </div>
+                  </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id = "favoritespageid">
+
+        <div class = "container">
+            
+                <table id="favoritespagetable" class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th><th>Profile Photo</th><th>Name</th><th>Type</th><th>Favorites</th><th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody id="favoritespagetbody">
+                    </tbody>
+                </table>
+            
+        </div> 
+        
+        </div>
+        
+    </body>
+</html>
